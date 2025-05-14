@@ -9,6 +9,7 @@ export function useCreateShortCode() {
     const [url, setUrl] = useState("");
     const [errors, setErrors] = useState<string[]>([]);
     const [shortCode, setShortCode] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,12 +25,14 @@ export function useCreateShortCode() {
             return;
         }
 
+        setLoading(true);
         const {
             shortcode: createdShortCode,
             error
         } = await createShortCodeUsecase.execute(url);
 
         if (error) {
+            setLoading(false);
             setErrors([error]);
             return;
         }
@@ -39,6 +42,7 @@ export function useCreateShortCode() {
     };
 
     const cleanup = () => {
+        setLoading(false);
         setErrors([]);
         setUrl("");
     }
@@ -46,6 +50,7 @@ export function useCreateShortCode() {
     return {
         shortCode,
         url,
+        loading,
         errors,
         setUrl,
         handleSubmit,
