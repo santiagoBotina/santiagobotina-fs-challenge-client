@@ -1,12 +1,13 @@
 import {Card, CardContent} from "@components/card";
 import {Input} from "@components/input";
 import {Button} from "@components/button";
-import {useCreateShortCode} from "@hooks/useCreateShortCode.ts";
+import {useCreateShortCode} from "@hooks/useCreateShortCode.tsx";
+import {Loader} from "@components/loader";
 
 
 
 export const Home = () => {
-    const {shortCode, url, errors, setUrl, handleSubmit} = useCreateShortCode();
+    const {shortCode, url, loading, errors, setUrl, handleSubmit} = useCreateShortCode();
 
     return (
         <div className="bg-gradient-to-b from-indigo-50 to-white py-10 px-6">
@@ -31,10 +32,13 @@ export const Home = () => {
                             )}
                         </div>
 
-
-                        <Button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white">
-                            Generate Link
-                        </Button>
+                        {loading ? (
+                            <Loader />
+                        ) : (
+                            <Button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white">
+                                Generate Link
+                            </Button>
+                        )}
                     </form>
 
                     {shortCode && (
