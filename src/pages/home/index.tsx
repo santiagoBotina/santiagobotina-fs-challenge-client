@@ -4,8 +4,6 @@ import {Button} from "@components/button";
 import {useCreateShortCode} from "@hooks/useCreateShortCode.tsx";
 import {Loader} from "@components/loader";
 
-
-
 export const Home = () => {
     const {shortCode, url, loading, errors, setUrl, handleSubmit} = useCreateShortCode();
 
