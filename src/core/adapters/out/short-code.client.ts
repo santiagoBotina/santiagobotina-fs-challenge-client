@@ -1,15 +1,20 @@
 import type {IShortCodeClient} from "@adapters/out/interfaces/short-code-client.interface.ts";
 import type {
     CreateShortCodeAPIResponse,
-    CreateShortCodeClientResponse,
-} from "@adapters/out/interfaces/responses.interface.ts";
+    CreateShortCodeClientResponse, GetTopShortCodesAPIResponse, GetTopShortCodesClientResponse,
+} from "@adapters/out/interfaces/responses.types.ts";
 import {ErrorMessages} from "@utils/app.constants.ts";
 
 export class ShortCodeClient implements IShortCodeClient{
     private readonly baseUrl: string;
-    private readonly errorResponse: CreateShortCodeClientResponse = {
+    private readonly creationErrorResponse: CreateShortCodeClientResponse = {
         shortcode: null,
         error: ErrorMessages.SHORT_CODE_CREATION_FAILED
+    }
+
+    private readonly getTopErrorResponse: GetTopShortCodesClientResponse = {
+        shortcodes: null,
+        error: ErrorMessages.TOP_SHORT_CODES_FAILED
     }
 
     constructor(baseUrl: string) {
@@ -27,7 +32,7 @@ export class ShortCodeClient implements IShortCodeClient{
             });
 
             if (!response.ok) {
-                return this.errorResponse
+                return this.creationErrorResponse
             }
 
             const data = await response.json() as CreateShortCodeAPIResponse;
@@ -37,7 +42,31 @@ export class ShortCodeClient implements IShortCodeClient{
                 error: null
             };
         } catch {
-            return this.errorResponse
+            return this.creationErrorResponse
+        }
+    }
+
+    async getTopShortCodes(): Promise<GetTopShortCodesClientResponse> {
+        try {
+            const response = await fetch(this.baseUrl, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                return this.getTopErrorResponse
+            }
+
+            const data = await response.json() as GetTopShortCodesAPIResponse;
+
+            return {
+                shortcodes: data.urls,
+                error: null
+            }
+        } catch {
+            return this.getTopErrorResponse;
         }
     }
 }
