@@ -4,17 +4,17 @@ This project is built with React, TypeScript, and Vite, designed to interact wit
 
 ## Preview
 ### Home
-![Home](./public/screenshoots/home.png)
+![Home](public/screenshots/home.png)
 ### When URL is invalid
-![invalid_url](./public/screenshoots/invalid_url.png)
+![invalid_url](public/screenshots/invalid_url.png)
 ### When URL is empty
-![url_not_empty](./public/screenshoots/url_not_empty.png)
+![url_not_empty](public/screenshots/url_not_empty.png)
 ### When URL is valid
-![valid_url](./public/screenshoots/valid_url.png)
+![valid_url](public/screenshots/valid_url.png)
 ### Then it's successfully
-![created_url](./public/screenshoots/created_url.png)
+![created_url](public/screenshots/created_url.png)
 ### Top 100 URLs
-![top_100](./public/screenshoots/top_100.png)
+![top_100](public/screenshots/top_100.png)
 
 ## Prerequisites
 Ensure you have the following installed:
