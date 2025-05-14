@@ -40,8 +40,13 @@ export const Home = () => {
                     </form>
 
                     {shortCode && (
-                        <div className="flex flex-row mt-4 text-green-700 font-medium">
-                            ShortCode generated: <p className="underline">{shortCode}</p>
+                        <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-md shadow-sm">
+                            <p className="text-green-700 font-medium">
+                                ShortCode generated: <span className="underline break-all">{shortCode}</span>
+                            </p>
+                            <p className="text-blue-500 font-medium">
+                                Access URL: <span className="underline break-all">{import.meta.env.VITE_SHORT_CODE_API_URL}/{shortCode}</span>
+                            </p>
                         </div>
                     )}
                 </CardContent>

@@ -17,7 +17,7 @@ export const Top100 = () => {
                                 <div key={idx} className="flex justify-between items-center p-2 bg-white shadow-sm rounded">
                                     <div className="flex flex-col">
                                         <span className="font-medium text-gray-800 truncate w-64">{shortCode.full_url}</span>
-                                        <span className="text-sm text-gray-500">{shortCode.shortcode}</span>
+                                        <span className="text-sm text-gray-500">shortcode: {shortCode.shortcode}</span>
                                     </div>
                                     <span className="text-sm text-indigo-700">Accessed {shortCode.click_count} times</span>
                                 </div>
