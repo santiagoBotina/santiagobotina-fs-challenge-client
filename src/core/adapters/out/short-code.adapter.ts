@@ -5,7 +5,7 @@ import type {
 } from "@adapters/out/interfaces/responses.types.ts";
 import {ErrorMessages} from "@utils/app.constants.ts";
 
-export class ShortCodeClient implements IShortCodeClient{
+export class ShortCodeAdapter implements IShortCodeClient{
     private readonly baseUrl: string;
     private readonly creationErrorResponse: CreateShortCodeClientResponse = {
         shortcode: null,
@@ -70,5 +70,3 @@ export class ShortCodeClient implements IShortCodeClient{
         }
     }
 }
-
-export const shortCodeClient = new ShortCodeClient(import.meta.env.VITE_SHORT_CODE_API_URL!);
