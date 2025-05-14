@@ -1,15 +1,15 @@
 import {useState} from "react";
 import {isValidUrl} from "@utils/url-validator.util.ts";
 import {CreateShortCodeUseCase} from "@domain/usecases/create-short-code.usecase.ts";
-import {shortCodeClient} from "@adapters/out/short-code.client.ts";
-
-const createShortCodeUsecase = new CreateShortCodeUseCase(shortCodeClient)
+import {shortCodeClient} from "@adapters/out/shortcode.client.ts";
 
 export function useCreateShortCode() {
     const [url, setUrl] = useState("");
     const [errors, setErrors] = useState<string[]>([]);
     const [shortCode, setShortCode] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const createShortCodeUsecase = new CreateShortCodeUseCase(shortCodeClient)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

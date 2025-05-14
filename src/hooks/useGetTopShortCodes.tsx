@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
 import {ShortCode} from "@domain/model/short-code.entity.ts";
 import {GetTopShortCodesUseCase} from "@domain/usecases/get-top-short-codes.usecase.ts";
-import {shortCodeClient} from "@adapters/out/short-code.client.ts";
-
-const getTopShortCodesUseCase = new GetTopShortCodesUseCase(shortCodeClient)
+import {shortCodeClient} from "@adapters/out/shortcode.client.ts";
 
 export function useGetTopShortCodes() {
     const [topUrls, setTopUrls] = useState<ShortCode[]>([]);
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+
+    const getTopShortCodesUseCase = new GetTopShortCodesUseCase(shortCodeClient)
 
     useEffect(() => {
         const getTopShortCodes = async () => {
